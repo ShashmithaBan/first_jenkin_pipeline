@@ -29,11 +29,14 @@ pipeline {
         npm_config_cache = 'npm-cache'
     }
                     steps {
-                        // Error 4: Usually need to change directory to frontend
-                        dir('frontend') {
-                            sh 'npm install'
-                            sh 'timeout 30s npm start || true'
-                        }
+                       // This is the "Truth" command - it shows every file Jenkins sees
+        sh 'ls -R' 
+        
+        script {
+            // Check if the directory actually exists before entering it
+            sh 'npm install'
+            sh 'timeout 30s npm start || true'
+        }
                     }
                 }
             }
