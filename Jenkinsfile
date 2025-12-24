@@ -23,6 +23,11 @@ pipeline {
                             image 'node:14-alpine'
                         }
                     }
+                    environment {
+        // This tells npm to use the workspace for its cache
+        HOME = '.' 
+        npm_config_cache = 'npm-cache'
+    }
                     steps {
                         // Error 4: Usually need to change directory to frontend
                         dir('frontend') {
